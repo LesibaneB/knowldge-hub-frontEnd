@@ -3,6 +3,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {HeaderComponent} from '../header/header.component';
+import {ItemComponent} from '../questions/item/item.component';
+import {ListComponent} from '../questions/list/list.component';
 import {SearchBarComponent} from '../search-bar/search-bar.component';
 import {SearchService} from '../shared/services/search.service';
 import {DashboardComponent} from './dashboard.component';
@@ -16,6 +18,8 @@ describe('DashboardComponent', () => {
       declarations: [
         DashboardComponent,
         HeaderComponent,
+        ListComponent,
+        ItemComponent,
         SearchBarComponent],
       imports: [
         ReactiveFormsModule,

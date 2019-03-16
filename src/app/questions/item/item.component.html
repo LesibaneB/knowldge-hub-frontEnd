@@ -1,0 +1,16 @@
+<nz-list-item>
+  <nz-list-item-meta
+    [nzDescription]="itemTitle">
+    <ng-template #itemTitle>
+      <a (click)="viewQuestion()">{{question.description}}</a>
+    </ng-template>
+  </nz-list-item-meta>
+  <ul class="list-item__stats">
+    <li class="stats__item">{{question.votes}} Votes<em class="list-item-stats__split"></em></li>
+    <li class="stats__item">{{question.answers.length}} Answers<em class="list-item-stats__split"></em></li>
+    <li class="stats__item">{{question.views}} Views</li>
+    <li class="stats__item list-item__date" *ngIf="checkIfUpdated()"> Asked {{question.createdDate}}</li>
+    <li class="stats__item list-item__date" *ngIf="!checkIfUpdated()"> Updated {{question.createdDate}}</li>
+  </ul>
+</nz-list-item>
+
