@@ -1,5 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {HeaderComponent} from '../header/header.component';
@@ -24,7 +25,8 @@ describe('DashboardComponent', () => {
       imports: [
         ReactiveFormsModule,
         FormsModule,
-        NgZorroAntdModule
+        NgZorroAntdModule,
+        HttpClientTestingModule
       ],
       providers: [SearchService]
     })

@@ -11,8 +11,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {HeaderComponent} from './header/header.component';
-import {SearchBarComponent} from './search-bar/search-bar.component';
 import {QuestionsModule} from './questions/questions.module';
+import {SearchBarComponent} from './search-bar/search-bar.component';
 
 registerLocaleData(en);
 
