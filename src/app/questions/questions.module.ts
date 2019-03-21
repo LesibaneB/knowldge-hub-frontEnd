@@ -1,4 +1,5 @@
 import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {ItemComponent} from './item/item.component';
@@ -8,7 +9,8 @@ import {ListComponent} from './list/list.component';
   declarations: [ListComponent, ItemComponent],
   imports: [
     CommonModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    HttpClientModule
   ],
   exports: [
     ListComponent

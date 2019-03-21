@@ -149,14 +149,6 @@
       "allow-declarations",
       "allow-named-functions"
     ],
-    "ordered-imports": [
-      true,
-      {
-        "import-sources-order": "case-insensitive",
-        "named-imports-order": "case-insensitive",
-        "grouped-imports": false
-      }
-    ],
     "typedef": [
       true,
       "call-signature",

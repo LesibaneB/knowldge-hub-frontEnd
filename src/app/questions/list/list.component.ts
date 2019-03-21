@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Owner} from '../../shared/models/owner';
+import {Subscription} from 'rxjs';
 import {Question} from '../models/question';
-import {RetrievalAnswer} from '../models/retrieval-answer';
-import {RetrievalComment} from '../models/retrieval-comment';
+import {QuestionService} from '../services/question.service';
 
 @Component({
   selector: 'app-question-list',
@@ -11,33 +10,19 @@ import {RetrievalComment} from '../models/retrieval-comment';
 })
 export class ListComponent implements OnInit {
 
-  public data: Array<Question> = [{
-    _id: '5c8566d49fb8f43211d66ce8',
-    description: 'Debugging java',
-    content: 'Content Here',
-    tags: [
-      'Java',
-      'Debugging'
-    ],
-    votes: 0,
-    views: 0,
-    owner: {
-      _id: 1,
-      name: 'Bonakele',
-      lastName: 'Lesibane',
-      username: 'Bongs'
-    } as Owner,
-    answers: [],
-    comments: [],
-    createdDate: '2019-03-10T19:34:44.744Z',
-    updatedDate: '2019-03-10T19:34:44.744Z',
-  } as Question];
+  public questions: Array<Question> = [];
+  public subscriptions: Array<Subscription> = [];
   public loading = false;
 
-  constructor() {
+  constructor(private readonly  _questionService: QuestionService) {
   }
 
   public ngOnInit(): void {
+    this.subscriptions.push(this._questionService
+      .getAllQuestions()
+      .subscribe((questions: Array<Question>) => {
+        this.questions = questions;
+      }));
   }
-
 }
+
