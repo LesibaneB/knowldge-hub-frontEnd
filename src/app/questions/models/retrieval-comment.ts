@@ -1,11 +1,11 @@
 import {Owner} from '../../shared/models/owner';
 
 export class RetrievalComment {
-  private id: string;
-  private contents: string;
-  private questionId: string;
-  private answerId: string;
-  private owner: Owner;
-  private createdDate: string;
-  private updatedDate: string;
+  private readonly id: string;
+  private readonly contents: string;
+  private readonly questionId: string;
+  private readonly answerId: string;
+  private readonly owner: Owner;
+  private readonly createdDate: string;
+  private readonly updatedDate: string;
 }

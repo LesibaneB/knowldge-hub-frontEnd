@@ -4,13 +4,9 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {NgZorroAntdModule, NzEmptyComponent} from 'ng-zorro-antd';
-import {of} from 'rxjs';
-import SpyObj = jasmine.SpyObj;
 import {Owner} from '../../shared/models/owner';
-import {spyOnClass} from '../../shared/test-utils/spy-on-class';
 import {ItemComponent} from '../item/item.component';
 import {Question} from '../models/question';
-import {QuestionService} from '../services/question.service';
 import {ListComponent} from './list.component';
 
 describe('ListComponent', () => {
@@ -40,8 +36,6 @@ describe('ListComponent', () => {
     updatedDate: '2019-03-10T19:34:44.744Z',
   } as Question];
 
-  const questionServiceSpy: SpyObj<QuestionService> = spyOnClass(QuestionService);
-  questionServiceSpy.getAllQuestions.and.returnValue(of(questions));
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -51,12 +45,6 @@ describe('ListComponent', () => {
       imports: [
         NgZorroAntdModule,
         HttpClientTestingModule
-      ],
-      providers: [
-        {
-          provide: QuestionService,
-          useValue: questionServiceSpy
-        }
       ]
     })
       .compileComponents();
@@ -65,6 +53,7 @@ describe('ListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListComponent);
     component = fixture.componentInstance;
+    component.questions = questions;
     debugElement = fixture.debugElement;
     fixture.detectChanges();
   });
@@ -77,10 +66,11 @@ describe('ListComponent', () => {
     component.questions = [];
     fixture.detectChanges();
     const noDataDirective = debugElement.query(By.directive(NzEmptyComponent));
+    console.log(noDataDirective);
     expect(noDataDirective).not.toBe(null);
   });
 
-  it('should not show no data when questions exist', function (): void {
+  it('should not show "no data" Directive when questions exist', function (): void {
     const noDataDirective = debugElement.query(By.directive(NzEmptyComponent));
     expect(noDataDirective).toBe(null);
   });
