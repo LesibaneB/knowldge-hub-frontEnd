@@ -9,10 +9,34 @@ import {ListComponent} from '../questions/list/list.component';
 import {SearchBarComponent} from '../search-bar/search-bar.component';
 import {SearchService} from '../shared/services/search.service';
 import {DashboardComponent} from './dashboard.component';
+import {Owner} from '../shared/models/owner';
+import {Question} from '../questions/models/question';
+import {ActivatedRoute} from '@angular/router';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
+  const questions = [{
+    _id: '5c8566d49fb8f43211d66ce8',
+    description: 'Debugging java',
+    content: 'Content Here',
+    tags: [
+      'Java',
+      'Debugging'
+    ],
+    votes: 0,
+    views: 0,
+    owner: {
+      _id: 1,
+      name: 'Bonakele',
+      lastName: 'Lesibane',
+      username: 'Bongs'
+    } as Owner,
+    answers: [],
+    comments: [],
+    createdDate: '2019-03-10T19:34:44.744Z',
+    updatedDate: '2019-03-10T19:34:44.744Z',
+  } as Question];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -28,7 +52,19 @@ describe('DashboardComponent', () => {
         NgZorroAntdModule,
         HttpClientTestingModule
       ],
-      providers: [SearchService]
+      providers: [
+        SearchService,
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              data: {
+                questions: questions
+              }
+            }
+          }
+        }
+      ]
     })
       .compileComponents();
   }));

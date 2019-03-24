@@ -9,7 +9,7 @@ import {Question} from '../models/question';
 })
 export class QuestionService {
 
-  private baseURL = environment.baseURL;
+  private readonly baseURL = environment.baseURL;
 
   constructor(private readonly _http: HttpClient) {
   }
