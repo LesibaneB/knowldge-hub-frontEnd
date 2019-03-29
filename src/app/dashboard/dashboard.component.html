@@ -1,16 +1,16 @@
-<div id="layout">
-  <div class="header" nz-row>
-    <app-header></app-header>
-  </div>
-  <div nz-row>
-    <div nz-col nzSpan="3"></div>
-    <div
-      nz-col
-      nzSpan="18">
-      <app-question-list [questions]="questions"></app-question-list>
-    </div>
-    <div nz-col nzSpan="3"></div>
-  </div>
+<div class="header" id="header" nz-row appHeaderSticky>
+  <app-header></app-header>
 </div>
+<div nz-row>
+  <div nz-col nzSpan="3"></div>
+  <div
+    nz-col
+    nzSpan="18">
+    <app-list-header *ngIf="questions.length > 0"></app-list-header>
+    <app-question-list [questions]="questions"></app-question-list>
+  </div>
+  <div nz-col nzSpan="3"></div>
+</div>
+
 
 

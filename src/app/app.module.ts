@@ -13,6 +13,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {HeaderComponent} from './header/header.component';
 import {QuestionsModule} from './questions/questions.module';
 import {SearchBarComponent} from './search-bar/search-bar.component';
+import { HeaderStickyDirective } from './directives/header-sticky.directive';
 
 registerLocaleData(en);
 
@@ -21,7 +22,8 @@ registerLocaleData(en);
     AppComponent,
     DashboardComponent,
     HeaderComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    HeaderStickyDirective
   ],
   imports: [
     BrowserModule,

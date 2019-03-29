@@ -12,10 +12,14 @@ import {DashboardComponent} from './dashboard.component';
 import {Owner} from '../shared/models/owner';
 import {Question} from '../questions/models/question';
 import {ActivatedRoute} from '@angular/router';
+import {ListHeaderComponent} from '../questions/list-header/list-header.component';
+import {DebugElement} from '@angular/core';
+import {By} from '@angular/platform-browser';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
+  let debugElement: DebugElement;
   const questions = [{
     _id: '5c8566d49fb8f43211d66ce8',
     description: 'Debugging java',
@@ -45,7 +49,8 @@ describe('DashboardComponent', () => {
         HeaderComponent,
         ListComponent,
         ItemComponent,
-        SearchBarComponent],
+        SearchBarComponent,
+        ListHeaderComponent],
       imports: [
         ReactiveFormsModule,
         FormsModule,
@@ -72,10 +77,31 @@ describe('DashboardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
+    debugElement = fixture.debugElement;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should show ListHeaderComponent when there are questions ',
+    function (): void {
+      const listComponentRef = debugElement.query(By.directive(ListHeaderComponent));
+      expect(listComponentRef).not.toBe(null);
+    });
+
+  it('should not show ListHeaderComponent when there are no questions ',
+    function (): void {
+      component.questions = [];
+      fixture.detectChanges();
+      const listComponentRef = debugElement.query(By.directive(ListHeaderComponent));
+      expect(listComponentRef).toBe(null);
+    });
+
+  it('should show ListComponent',
+    function (): void {
+      const listComponentRef = debugElement.query(By.directive(ListComponent));
+      expect(listComponentRef).not.toBe(null);
+    });
 });
