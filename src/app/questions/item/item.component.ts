@@ -25,10 +25,6 @@ export class ItemComponent implements OnInit {
   }
 
   public checkIfUpdated(): boolean {
-    if (moment(this.question.createdDate).isSame(this.question.updatedDate)) {
-      return true;
-    }
-
-    return false;
+    return moment(this.question.createdDate).isSame(this.question.updatedDate);
   }
 }
